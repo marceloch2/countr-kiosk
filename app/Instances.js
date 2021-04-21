@@ -57,13 +57,13 @@ export const AppInstances = (function () {
 
     if (!process.env.PRODUCTION) {
       countrClient.setClient({
-        client_id: 'client-f5189179da1eeff475cf9fcd233e155824fd497a',
-        client_secret: 'secret-5248dc339a5812d07e1fcee9a7845fc6fd713a5c',
+        client_id: process.env.CLIENT_ID,
+        client_secret: process.env.CLIENT_SECRET
       })
     } else {
       countrClient.setClient({
-        client_id: 'client-ea1412c04fed650285a1b2640f095e1fc794d66a',
-        client_secret: 'secret-577308f714567efbe2977b603085ab1fe01da6a2',
+        client_id: process.env.CLIENT_ID_PROD,
+        client_secret: process.env.CLIENT_SECRET_PROD
       })
     }
 

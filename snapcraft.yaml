@@ -3,7 +3,7 @@ version: '0.0.1'
 summary: Countr Desktop Kiosk Mode
 description: |
   Countr Desktop Kiosk Mode
-base: core20
+base: core18
 confinement: devmode
 grade: devel
 compression: lzo

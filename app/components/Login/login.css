@@ -1,0 +1,11 @@
+.loginError {
+  -webkit-box-shadow: 0 0 20px -3px #af4848 !important;
+}
+
+.wait {
+  position: absolute;
+  z-index: 10000;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+}

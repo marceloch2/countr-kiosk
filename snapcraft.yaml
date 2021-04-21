@@ -1,0 +1,51 @@
+name: countr-desktop
+version: '0.1'
+summary: Countr Desktop Kiosk Mode
+description: |
+  Countr Desktop Kiosk Mode
+base: core18
+confinement: strict
+grade: devel
+compression: lzo
+
+apps:
+  countr-desktop:
+    daemon: simple
+    extensions: [gnome-3-28]
+    restart-condition: always
+    command: snap/command-chain/desktop-launch xwayland-kiosk-launch $SNAP/countr-desktop --no-sandbox
+    plugs:
+      - browser-support
+      - network
+      - network-bind
+      - opengl
+      - pulseaudio
+      - wayland
+
+layout:
+  /usr/share/fonts:
+    bind: $SNAP/usr/share/fonts
+
+environment:
+  XWAYLAND_FULLSCREEN_WINDOW_HINT: window_role="browser-window"
+
+parts:
+  countr-desktop:
+    plugin: nil
+    source: .
+    override-build: |
+      npm install electron-packager
+      ./node_modules/.bin/electron-packager . --overwrite \
+          --platform=linux --output=release-build --prune=true
+      cp -v -R ./countr-desktop $SNAPCRAFT_PART_INSTALL/countr-desktop
+    stage-packages:
+      - libnspr4
+      - libnss3
+    build-snaps:
+      - node/14/stable
+
+  xwayland-kiosk-helper:
+    plugin: cmake
+    source: https://github.com/MirServer/xwayland-kiosk-helper.git
+    build-packages: [build-essential]
+    stage-packages: [xwayland, i3, libegl1-mesa, libgl1-mesa-glx]

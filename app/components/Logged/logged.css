@@ -1,0 +1,27 @@
+.tools {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.tools button {
+  border: none;
+  border-radius: 3px;
+  width: 150px;
+  height: 35px;
+  background-color: #000;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.version {
+  font-size: 0.6em;
+}
+
+.username {
+  position: relative;
+  bottom: 75px;
+  color: #808080;
+  font-size: 0.7em;
+}

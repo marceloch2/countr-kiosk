@@ -11,7 +11,7 @@ compression: lzo
 apps:
   countr-desktop:
     daemon: simple
-    extensions: [gnome-3-28]
+    extensions: [gnome-3-34]
     restart-condition: always
     command: snap/command-chain/desktop-launch xwayland-kiosk-launch $SNAP/countr-kiosk --no-sandbox
     plugs:

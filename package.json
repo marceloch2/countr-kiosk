@@ -1,6 +1,6 @@
 {
-  "name": "countr-desktop",
-  "productName": "Countr-Desktop",
+  "name": "countr-kiosk",
+  "productName": "Countr-Kiosk",
   "version": "4.0.1",
   "description": "Countr Desktop POS Retails Solution",
   "scripts": {

@@ -1,10 +1,10 @@
-name: countr-desktop
-version: '0.1'
+name: countr-kiosk
+version: '0.0.1'
 summary: Countr Desktop Kiosk Mode
 description: |
   Countr Desktop Kiosk Mode
-base: core18
-confinement: strict
+base: core20
+confinement: devmode
 grade: devel
 compression: lzo
 
@@ -13,7 +13,7 @@ apps:
     daemon: simple
     extensions: [gnome-3-28]
     restart-condition: always
-    command: snap/command-chain/desktop-launch xwayland-kiosk-launch $SNAP/countr-desktop --no-sandbox
+    command: snap/command-chain/desktop-launch xwayland-kiosk-launch $SNAP/countr-kiosk --no-sandbox
     plugs:
       - browser-support
       - network
@@ -30,14 +30,12 @@ environment:
   XWAYLAND_FULLSCREEN_WINDOW_HINT: window_role="browser-window"
 
 parts:
-  countr-desktop:
+  countr-kiosk:
     plugin: nil
     source: .
     override-build: |
-      npm install electron-packager
-      ./node_modules/.bin/electron-packager . --overwrite \
-          --platform=linux --output=release-build --prune=true
-      cp -v -R ./countr-desktop $SNAPCRAFT_PART_INSTALL/countr-desktop
+      npm install electron-builder
+      ./node_modules/.bin/electron-builder --dir --armv7l --linux snap
     stage-packages:
       - libnspr4
       - libnss3
